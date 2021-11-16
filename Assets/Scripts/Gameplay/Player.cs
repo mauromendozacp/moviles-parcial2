@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class PActions
+{
+    public Action<int> OnScore = null;
+}
+
 public class Player : MonoBehaviour
 {
     #region EXPOSED_FIELDS
@@ -20,16 +25,28 @@ public class Player : MonoBehaviour
 
     #region PRIVATE_METHODS
 
+    private int score = 0;
     private bool dead = false;
     private bool moveUp = false;
 
     private GMActions gmActions = null;
+    private PActions pActions = null;
 
     #endregion
 
     #region PROPERTIES
 
-    public int Score { get; set; } = 0;
+    public int Score
+    {
+        get => score;
+        set
+        {
+            score = value;
+            pActions.OnScore?.Invoke(score);
+        }
+    }
+
+    public PActions PActions => pActions;
 
     #endregion
 
@@ -64,6 +81,7 @@ public class Player : MonoBehaviour
 
     public void Init(GMActions gmActions)
     {
+        pActions = new PActions();
         this.gmActions = gmActions;
     }
 

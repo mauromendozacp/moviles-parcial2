@@ -12,6 +12,7 @@ public class GameplayManager : MonoBehaviour
     #region EXPOSED_FIELDS
 
     [SerializeField] private Player player = null;
+    [SerializeField] private HUD hud = null;
 
     #endregion
 
@@ -48,6 +49,7 @@ public class GameplayManager : MonoBehaviour
         gmActions.OnPlayerDeath += EndLevel;
 
         player.Init(gmActions);
+        hud.Init(player.PActions);
     }
 
     private void EndLevel()

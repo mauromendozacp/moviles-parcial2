@@ -22,8 +22,10 @@ public class FloorLoop : MonoBehaviour
 {
     #region EXPOSED_FIELDS
 
-    [SerializeField] private Floor[] floors = null;
+    [SerializeField] private int levelIndex = 0;
     [SerializeField] private Level[] levels = null;
+
+    [SerializeField] private Floor[] floors = null;
     [SerializeField] private float speed = 0f;
 
     [SerializeField] private PoolManager obstacleManager = null;
@@ -35,8 +37,17 @@ public class FloorLoop : MonoBehaviour
 
     #region PRIVATE_FIELDS
 
-    private int levelIndex = 0;
     private int floorSpaces = 0;
+
+    #endregion
+
+    #region PROPERTIES
+
+    public int LevelIndex
+    {
+        get => levelIndex;
+        set => levelIndex = value;
+    }
 
     #endregion
 
