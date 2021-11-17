@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float horSpeed = 0f;
     [SerializeField] private float verSpeed = 0f;
+    [SerializeField] private float jumpTransition = 0f;
 
     [SerializeField] private LayerMask obstacleMask = default;
     [SerializeField] private LayerMask scoreMask = default;
@@ -25,6 +26,8 @@ public class Player : MonoBehaviour
 
     #region PRIVATE_METHODS
 
+    private int points = 50;
+    private float timer = 0f;
     private int score = 0;
     private bool dead = false;
     private bool moveUp = false;
@@ -71,7 +74,9 @@ public class Player : MonoBehaviour
         }
         else if (CheckLayerInMask(scoreMask, other.gameObject.layer))
         {
-            SetScore(50);
+            Score += points;
+            PropScore propScore = other.gameObject.GetComponent<PropScore>();
+            propScore.ReturnScore();
         }
     }
 
@@ -101,27 +106,20 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (moveUp)
-        {
-            transform.Translate(Vector3.up * (verSpeed * Time.deltaTime));
-            if (transform.position.y > start.position.y)
-            {
-                moveUp = false;
-            }
-        }
-        else
-        {
-            transform.Translate(Vector3.down * (verSpeed * Time.deltaTime));
-            if (transform.position.y < end.position.y)
-            {
-                moveUp = true;
-            }
-        }
-    }
+        timer += Time.deltaTime;
+        float interpole = timer / jumpTransition;
 
-    private void SetScore(int points)
-    {
-        Score += points;
+        Vector3 newPos = transform.position;
+        newPos.y = moveUp 
+            ? Mathf.Lerp(start.position.y, end.position.y, interpole) 
+            : Mathf.Lerp(end.position.y, start.position.y, interpole);
+        transform.position = newPos;
+
+        if (interpole >= 1f)
+        {
+            moveUp = !moveUp;
+            timer = 0f;
+        }
     }
 
     private void Death()

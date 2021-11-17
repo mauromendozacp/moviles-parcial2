@@ -29,6 +29,7 @@ public class FloorLoop : MonoBehaviour
     [SerializeField] private float speed = 0f;
 
     [SerializeField] private PoolManager obstacleManager = null;
+    [SerializeField] private PoolManager scoreManager = null;
 
     [SerializeField] private Transform startPos = null;
     [SerializeField] private Transform endPos = null;
@@ -52,11 +53,6 @@ public class FloorLoop : MonoBehaviour
     #endregion
 
     #region UNITY_CALLS
-
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -89,26 +85,52 @@ public class FloorLoop : MonoBehaviour
         floor.transform.position = auxPos;
 
         floor.SpawnRestart();
-        for (int i = 0; i < floor.obstacleList.Count; i++)
+        for (int i = 0; i < floor.ObstacleList.Count; i++)
         {
-            floor.obstacleList[i].transform.parent = obstacleManager.transform;
-            obstacleManager.ReturnObjectToPool(floor.obstacleList[i]);
+            floor.ObstacleList[i].transform.parent = obstacleManager.transform;
+            obstacleManager.ReturnObjectToPool(floor.ObstacleList[i]);
+        }
+        floor.ObstacleList.Clear();
+
+        if (floor.ScoreGO != null)
+        {
+            ReturnScore(floor);
         }
 
         floorSpaces++;
         if (floorSpaces >= levels[levelIndex].emptySpaces)
         {
+            Transform spawnTransform = null;
+            GameObject spawnGO = null;
+
             for (int i = 0; i < levels[levelIndex].obstacleCount; i++)
             {
-                Transform spawnGO = floor.GetSpawnRandom();
-                GameObject obstacleGO = obstacleManager.GetObjectFromPool();
-                obstacleGO.transform.position = spawnGO.position;
-                obstacleGO.transform.parent = spawnGO;
-                floor.obstacleList.Add(obstacleGO);
+                spawnTransform = floor.GetSpawnRandom();
+                spawnGO = obstacleManager.GetObjectFromPool();
+                spawnGO.transform.position = spawnTransform.position;
+                spawnGO.transform.parent = spawnTransform;
+                floor.ObstacleList.Add(spawnGO);
             }
+
+            spawnTransform = floor.GetSpawnRandom();
+            spawnGO = scoreManager.GetObjectFromPool();
+            spawnGO.transform.position = spawnTransform.position;
+            spawnGO.transform.parent = spawnTransform;
+            floor.ScoreGO = spawnGO;
+            
+            PropScore propScore = spawnGO.GetComponent<PropScore>();
+            propScore.Floor = floor;
+            propScore.FloorLoop = this;
 
             floorSpaces = 0;
         }
+    }
+
+    public void ReturnScore(Floor floor)
+    {
+        floor.ScoreGO.transform.parent = scoreManager.transform;
+        scoreManager.ReturnObjectToPool(floor.ScoreGO);
+        floor.ScoreGO = null;
     }
 
     #endregion

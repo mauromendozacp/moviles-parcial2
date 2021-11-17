@@ -19,9 +19,8 @@ public class Floor : MonoBehaviour
 
     #region PROPERTIES
 
-    public List<GameObject> obstacleList = null;
-
-    public bool InUse { get; set; } = false;
+    public List<GameObject> ObstacleList = null;
+    public GameObject ScoreGO = null;
 
     #endregion
 
@@ -29,7 +28,7 @@ public class Floor : MonoBehaviour
 
     void Start()
     {
-        obstacleList = new List<GameObject>();
+        ObstacleList = new List<GameObject>();
     }
 
     #endregion
@@ -52,8 +51,7 @@ public class Floor : MonoBehaviour
             index = Random.Range(0, spawns.Length);
         } while (spawns[index].inUse);
 
-
-        InUse = true;
+        spawns[index].inUse = true;
         return spawns[index].transform;
     }
 

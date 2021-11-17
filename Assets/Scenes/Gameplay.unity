@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 4b325c09e6cbc554993a8afa429c254e,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -1014,6 +1015,7 @@ MonoBehaviour:
   - {fileID: 984057173}
   speed: 5
   obstacleManager: {fileID: 984280663}
+  scoreManager: {fileID: 733862015}
   startPos: {fileID: 1462086198}
   endPos: {fileID: 1649483191}
 --- !u!1 &1460758264
@@ -2137,7 +2139,7 @@ PrefabInstance:
     - target: {fileID: 4951599776216450998, guid: 5142a18b6e7302b44b505e16ccb384a0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 4951599776216450998, guid: 5142a18b6e7302b44b505e16ccb384a0,
         type: 3}
@@ -2187,7 +2189,17 @@ PrefabInstance:
     - target: {fileID: 7007470129219275188, guid: 5142a18b6e7302b44b505e16ccb384a0,
         type: 3}
       propertyPath: verSpeed
-      value: 16.5
+      value: 17.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7007470129219275188, guid: 5142a18b6e7302b44b505e16ccb384a0,
+        type: 3}
+      propertyPath: jumpTransition
+      value: 0.265
+      objectReference: {fileID: 0}
+    - target: {fileID: 7007470129219275188, guid: 5142a18b6e7302b44b505e16ccb384a0,
+        type: 3}
+      propertyPath: scoreMask.m_Bits
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 7007470129219275188, guid: 5142a18b6e7302b44b505e16ccb384a0,
         type: 3}
