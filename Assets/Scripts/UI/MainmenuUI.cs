@@ -7,6 +7,7 @@ public class MainmenuUI : MonoBehaviour
     #region EXPOSED_FIELDS
 
     [SerializeField] private GameObject menuPanel = null;
+    [SerializeField] private GameObject storePanel = null;
     [SerializeField] private GameObject creditsPanel = null;
 
     #endregion
@@ -22,6 +23,13 @@ public class MainmenuUI : MonoBehaviour
     {
         menuPanel.SetActive(true);
         creditsPanel.SetActive(false);
+        storePanel.SetActive(false);
+    }
+
+    public void ShowStore()
+    {
+        menuPanel.SetActive(false);
+        storePanel.SetActive(true);
     }
 
     public void ShowCredits()
