@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 57397334545198475}
   - component: {fileID: 57397334545198474}
   - component: {fileID: 5669246037884498651}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,8 @@ MonoBehaviour:
     inUse: 0
   - transform: {fileID: 4436174567612929230}
     inUse: 0
-  obstacleList: []
+  ObstacleList: []
+  ScoreGO: {fileID: 0}
 --- !u!1 &572697244373406119
 GameObject:
   m_ObjectHideFlags: 0

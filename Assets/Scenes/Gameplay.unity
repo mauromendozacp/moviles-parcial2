@@ -530,7 +530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 270297441471275226, guid: 69ee9fbdcdc7c954f97ee3ee7b0a1003, type: 3}
-  length: 25
+  length: 15
 --- !u!1001 &769876857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -654,6 +654,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 4951599776510957620}
   hud: {fileID: 1979973720}
+  floorLoop: {fileID: 1330292806}
+  difficulty: 2
 --- !u!4 &784545116
 Transform:
   m_ObjectHideFlags: 0
@@ -804,7 +806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 4118219705028798425, guid: 31bd608960ad2744b9079b99ce91cc3b, type: 3}
-  length: 25
+  length: 50
 --- !u!1001 &1025993629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1340,7 +1342,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1550265800}
-  - component: {fileID: 1550265801}
   m_Layer: 0
   m_Name: Enviroment
   m_TagString: Untagged
@@ -1366,20 +1367,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1550265801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1550265799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63a07a8aa4d11e042ba45a9629637981, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 4951599776510957620}
-  hud: {fileID: 1979973720}
 --- !u!1 &1558972632
 GameObject:
   m_ObjectHideFlags: 0
@@ -2139,7 +2126,7 @@ PrefabInstance:
     - target: {fileID: 4951599776216450998, guid: 5142a18b6e7302b44b505e16ccb384a0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.25
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 4951599776216450998, guid: 5142a18b6e7302b44b505e16ccb384a0,
         type: 3}
@@ -2159,6 +2146,11 @@ PrefabInstance:
     - target: {fileID: 5522777818132463061, guid: 5142a18b6e7302b44b505e16ccb384a0,
         type: 3}
       propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237636491632229566, guid: 5142a18b6e7302b44b505e16ccb384a0,
+        type: 3}
+      propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6237636491632229566, guid: 5142a18b6e7302b44b505e16ccb384a0,
@@ -2195,6 +2187,11 @@ PrefabInstance:
         type: 3}
       propertyPath: jumpTransition
       value: 0.265
+      objectReference: {fileID: 0}
+    - target: {fileID: 7007470129219275188, guid: 5142a18b6e7302b44b505e16ccb384a0,
+        type: 3}
+      propertyPath: floorMask.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 7007470129219275188, guid: 5142a18b6e7302b44b505e16ccb384a0,
         type: 3}

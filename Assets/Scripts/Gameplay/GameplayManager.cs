@@ -13,6 +13,8 @@ public class GameplayManager : MonoBehaviour
 
     [SerializeField] private Player player = null;
     [SerializeField] private HUD hud = null;
+    [SerializeField] private FloorLoop floorLoop = null;
+    [SerializeField] private DIFFICULTY difficulty = default;
 
     #endregion
 
@@ -36,7 +38,7 @@ public class GameplayManager : MonoBehaviour
 
     public void SendLog()
     {
-        MLogger.SendLog("Anashei");
+        MLogger.SendLog("Start game");
     }
 
     #endregion
@@ -50,6 +52,9 @@ public class GameplayManager : MonoBehaviour
 
         player.Init(gmActions);
         hud.Init(player.PActions);
+
+        player.Score = GameManager.Get().Score;
+        floorLoop.LevelIndex = (int) difficulty;
     }
 
     private void EndLevel()

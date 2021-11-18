@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private LayerMask obstacleMask = default;
     [SerializeField] private LayerMask scoreMask = default;
+    [SerializeField] private LayerMask floorMask = default;
 
     [SerializeField] private Transform start = null;
     [SerializeField] private Transform end = null;
@@ -29,8 +30,11 @@ public class Player : MonoBehaviour
     private int points = 50;
     private float timer = 0f;
     private int score = 0;
+    private bool fall = false;
     private bool dead = false;
     private bool moveUp = false;
+
+    private Rigidbody rigid = null;
 
     private GMActions gmActions = null;
     private PActions pActions = null;
@@ -57,11 +61,14 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        
+        rigid = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
+        if (dead || fall)
+            return;
+
         Move();
         Jump();
     }
@@ -117,6 +124,17 @@ public class Player : MonoBehaviour
 
         if (interpole >= 1f)
         {
+            if (moveUp)
+            {
+                if (!Physics.Raycast(transform.position, Vector3.down, 2f, floorMask))
+                {
+                    fall = true;
+                    rigid.useGravity = true;
+                    rigid.isKinematic = false;
+                    Invoke(nameof(Death), 2f);
+                }
+            }
+
             moveUp = !moveUp;
             timer = 0f;
         }

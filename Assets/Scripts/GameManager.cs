@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public void Init()
     {
-        Score = 0;
         GameOver = false;
     }
 
