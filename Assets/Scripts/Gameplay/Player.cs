@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PActions
@@ -13,7 +11,6 @@ public class Player : MonoBehaviour
     #region EXPOSED_FIELDS
 
     [SerializeField] private float horSpeed = 0f;
-    [SerializeField] private float verSpeed = 0f;
     [SerializeField] private float jumpTransition = 0f;
 
     [SerializeField] private LayerMask obstacleMask = default;
@@ -91,10 +88,12 @@ public class Player : MonoBehaviour
 
     #region PUBLIC_METHODS
 
-    public void Init(GMActions gmActions)
+    public void Init(GMActions gmActions, Skin skin)
     {
         pActions = new PActions();
         this.gmActions = gmActions;
+
+        Instantiate(skin.BallPrefab, transform);
     }
 
     #endregion

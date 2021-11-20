@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GMActions
@@ -15,6 +14,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private HUD hud = null;
     [SerializeField] private FloorLoop floorLoop = null;
     [SerializeField] private DIFFICULTY difficulty = default;
+    [SerializeField] private Skin defaultSkin = null;
 
     #endregion
 
@@ -34,15 +34,6 @@ public class GameplayManager : MonoBehaviour
 
     #endregion
 
-    #region PUBLIC_METHODS
-
-    public void SendLog()
-    {
-        MLogger.SendLog("Start game");
-    }
-
-    #endregion
-
     #region PRIVATE_METHODS
 
     private void Init()
@@ -50,16 +41,30 @@ public class GameplayManager : MonoBehaviour
         gmActions = new GMActions();
         gmActions.OnPlayerDeath += EndLevel;
 
-        player.Init(gmActions);
+        Skin skin = GameManager.Get().Skin;
+        if (skin == null)
+        {
+            skin = defaultSkin;
+            GameManager.Get().Skin = skin;
+        }
+
+        player.Init(gmActions, skin);
         hud.Init(player.PActions);
 
         player.Score = GameManager.Get().Score;
         floorLoop.LevelIndex = (int) difficulty;
+
+        SendLog();
     }
 
     private void EndLevel()
     {
         GameManager.Get().FinishGame(player.Score);
+    }
+
+    private void SendLog()
+    {
+        MLogger.SendLog("Start game");
     }
 
     #endregion

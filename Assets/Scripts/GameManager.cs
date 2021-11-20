@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
+    public Skin Skin { get; set; } = null;
     public int Score { get; set; } = 0;
     public bool GameOver { set; get; } = false;
 
