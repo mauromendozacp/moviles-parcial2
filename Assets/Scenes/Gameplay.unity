@@ -657,6 +657,7 @@ MonoBehaviour:
   floorLoop: {fileID: 1330292806}
   difficulty: 0
   defaultSkin: {fileID: 11400000, guid: 2604a9be6440b3f4fb69e5d7aa86ab53, type: 2}
+  startDelay: 3
 --- !u!4 &784545116
 Transform:
   m_ObjectHideFlags: 0
@@ -1471,6 +1472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f208092c39f35449897f196e66e68c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerScore: 0
 --- !u!4 &1566434658
 Transform:
   m_ObjectHideFlags: 0
@@ -1984,7 +1986,7 @@ PrefabInstance:
     - target: {fileID: 4951599776216450998, guid: 6ff386644447e6644b62c27e1b1e95d0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4951599776216450998, guid: 6ff386644447e6644b62c27e1b1e95d0,
         type: 3}

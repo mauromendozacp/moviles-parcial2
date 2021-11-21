@@ -44,6 +44,8 @@ public class FloorLoop : MonoBehaviour
 
     #region PROPERTIES
 
+    public bool Started { get; set; } = false;
+
     public int LevelIndex
     {
         get => levelIndex;
@@ -56,7 +58,10 @@ public class FloorLoop : MonoBehaviour
 
     void Update()
     {
-        MoveFloors();
+        if (Started)
+        {
+            MoveFloors();
+        }
     }
 
     #endregion

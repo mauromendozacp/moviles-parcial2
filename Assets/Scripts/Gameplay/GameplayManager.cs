@@ -15,6 +15,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private FloorLoop floorLoop = null;
     [SerializeField] private DIFFICULTY difficulty = default;
     [SerializeField] private Skin defaultSkin = null;
+    [SerializeField] private float startDelay = 0f;
 
     #endregion
 
@@ -55,6 +56,13 @@ public class GameplayManager : MonoBehaviour
         floorLoop.LevelIndex = (int) difficulty;
 
         SendLog();
+        Invoke(nameof(StartGame), startDelay);
+    }
+
+    private void StartGame()
+    {
+        player.Started = true;
+        floorLoop.Started = true;
     }
 
     private void EndLevel()

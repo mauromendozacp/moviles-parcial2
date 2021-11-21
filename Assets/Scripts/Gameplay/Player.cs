@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     private bool fall = false;
     private bool dead = false;
     private bool moveUp = false;
+    private float checkFloorDistance = 8f;
+    private float maxFloorDistance = 1.18f;
 
     private Rigidbody rigid = null;
 
@@ -39,6 +41,8 @@ public class Player : MonoBehaviour
     #endregion
 
     #region PROPERTIES
+
+    public bool Started { get; set; } = false;
 
     public int Score
     {
@@ -63,11 +67,14 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (dead || fall)
-            return;
+        if (Started)
+        {
+            if (dead || fall)
+                return;
 
-        Move();
-        Jump();
+            Move();
+            Jump();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -112,6 +119,29 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
+        if (!fall)
+        {
+            if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, checkFloorDistance, floorMask))
+            {
+                Transform floorTransform = hit.transform;
+
+                float distanceZ =  Mathf.Abs(transform.position.z - floorTransform.position.z);
+                Vector3 newPos = transform.position;
+                newPos.y = Mathf.Lerp(end.position.y, start.position.y, distanceZ / maxFloorDistance);
+                transform.position = newPos;
+
+                Debug.Log(distanceZ);
+            }
+            else
+            {
+                fall = true;
+                rigid.useGravity = true;
+                rigid.isKinematic = false;
+                Invoke(nameof(Death), 2f);
+            }
+        }
+
+        /*
         timer += Time.deltaTime;
         float interpole = timer / jumpTransition;
 
@@ -136,7 +166,7 @@ public class Player : MonoBehaviour
 
             moveUp = !moveUp;
             timer = 0f;
-        }
+        }*/
     }
 
     private void Death()
