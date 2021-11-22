@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     private bool moveUp = false;
     private float checkFloorDistance = 8f;
     private float maxFloorDistance = 1.18f;
+    private float screenHalf = 0f;
 
     private Rigidbody rigid = null;
 
@@ -63,6 +64,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
+        screenHalf = Screen.width / 2;
     }
 
     void Update()
@@ -109,13 +111,35 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
+#if UNITY_ANDROID
+        if (Input.touchCount > 0)
+        {
+            Touch myTouch = Input.GetTouch(0);
+            Vector3 dir;
+
+            if (myTouch.position.x > screenHalf)
+            {
+                dir = Vector3.right;
+            }
+            else
+            {
+                dir = Vector3.left;
+            }
+
+            transform.Translate(dir * (horSpeed * Time.deltaTime));
+        }
+#endif
+
+#if UNITY_EDITOR
         float hor = Input.GetAxis("Horizontal");
 
         if (Mathf.Abs(hor) > Mathf.Epsilon)
         {
             transform.Translate(Vector3.right * (hor * horSpeed * Time.deltaTime));
         }
+#endif
     }
+
 
     private void Jump()
     {
