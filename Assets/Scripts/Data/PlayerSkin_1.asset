@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballPrefab: {fileID: 3606446762785152029, guid: 571f6bb03aa918e418b26b13e1cf6fbe,
     type: 3}
+  skinSprite: {fileID: 21300000, guid: 7061e533a5cf53243a9d8ca7723df0fb, type: 3}
+  stars: 0

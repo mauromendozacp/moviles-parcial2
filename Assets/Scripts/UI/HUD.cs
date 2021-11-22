@@ -32,7 +32,7 @@ public class HUD : MonoBehaviour
 
     private void UpdateScore(int score)
     {
-        scoreText.text = ": " + score + "pts";
+        scoreText.text = ": " + score;
     }
 
     #endregion

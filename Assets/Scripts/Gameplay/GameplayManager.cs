@@ -52,7 +52,6 @@ public class GameplayManager : MonoBehaviour
         player.Init(gmActions, skin);
         hud.Init(player.PActions);
 
-        player.Score = GameManager.Get().Score;
         floorLoop.LevelIndex = (int) difficulty;
 
         SendLog();

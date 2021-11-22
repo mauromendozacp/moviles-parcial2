@@ -4,7 +4,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
     public Skin Skin { get; set; } = null;
-    public int Score { get; set; } = 0;
+    public PlayerStore PlayerStore { get; set; } = null;
+    public int CurrentStars { get; set; } = 0;
+    public int RecollectedStars { get; set; } = 0;
     public bool GameOver { set; get; } = false;
 
     public enum SceneGame
@@ -43,7 +45,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public void FinishGame(int score)
     {
-        Score = score;
+        RecollectedStars = score;
+        CurrentStars += RecollectedStars;
         GameOver = true;
         ChangeScene(SceneGame.GameOver);
     }

@@ -153,8 +153,6 @@ public class Player : MonoBehaviour
                 Vector3 newPos = transform.position;
                 newPos.y = Mathf.Lerp(end.position.y, start.position.y, distanceZ / maxFloorDistance);
                 transform.position = newPos;
-
-                Debug.Log(distanceZ);
             }
             else
             {
