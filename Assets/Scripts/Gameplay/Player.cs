@@ -140,33 +140,6 @@ public class Player : MonoBehaviour
                 Invoke(nameof(Death), 2f);
             }
         }
-
-        /*
-        timer += Time.deltaTime;
-        float interpole = timer / jumpTransition;
-
-        Vector3 newPos = transform.position;
-        newPos.y = moveUp 
-            ? Mathf.Lerp(start.position.y, end.position.y, interpole) 
-            : Mathf.Lerp(end.position.y, start.position.y, interpole);
-        transform.position = newPos;
-
-        if (interpole >= 1f)
-        {
-            if (moveUp)
-            {
-                if (!Physics.Raycast(transform.position, Vector3.down, 2f, floorMask))
-                {
-                    fall = true;
-                    rigid.useGravity = true;
-                    rigid.isKinematic = false;
-                    Invoke(nameof(Death), 2f);
-                }
-            }
-
-            moveUp = !moveUp;
-            timer = 0f;
-        }*/
     }
 
     private void Death()
