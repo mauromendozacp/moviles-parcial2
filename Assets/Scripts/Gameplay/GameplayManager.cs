@@ -13,14 +13,15 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private Player player = null;
     [SerializeField] private HUD hud = null;
     [SerializeField] private FloorLoop floorLoop = null;
-    [SerializeField] private DIFFICULTY difficulty = default;
     [SerializeField] private Skin defaultSkin = null;
     [SerializeField] private float startDelay = 0f;
+    [SerializeField] private float changeTimer = 0f;
 
     #endregion
 
     #region PRIVATE_FIELDS
 
+    private float timer = 0f;
     private GMActions gmActions = null;
 
     #endregion
@@ -31,6 +32,16 @@ public class GameplayManager : MonoBehaviour
     {
         GameManager.Get().Init();
         Init();
+    }
+
+    private void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer > changeTimer)
+        {
+            timer = 0f;
+            floorLoop.ChangeDifficulty();
+        }
     }
 
     #endregion
@@ -52,9 +63,6 @@ public class GameplayManager : MonoBehaviour
         player.Init(gmActions, skin);
         hud.Init(player.PActions);
 
-        floorLoop.LevelIndex = (int) difficulty;
-
-        SendLog();
         Invoke(nameof(StartGame), startDelay);
     }
 
@@ -67,11 +75,6 @@ public class GameplayManager : MonoBehaviour
     private void EndLevel()
     {
         GameManager.Get().FinishGame(player.Score);
-    }
-
-    private void SendLog()
-    {
-        MLogger.SendLog("Start game");
     }
 
     #endregion

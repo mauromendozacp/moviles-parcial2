@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum DIFFICULTY
@@ -10,7 +8,7 @@ public enum DIFFICULTY
     HARD
 }
 
-[System.Serializable]
+[Serializable]
 public struct Level
 {
     public DIFFICULTY difficulty;
@@ -46,12 +44,6 @@ public class FloorLoop : MonoBehaviour
 
     public bool Started { get; set; } = false;
 
-    public int LevelIndex
-    {
-        get => levelIndex;
-        set => levelIndex = value;
-    }
-
     #endregion
 
     #region UNITY_CALLS
@@ -61,6 +53,20 @@ public class FloorLoop : MonoBehaviour
         if (Started)
         {
             MoveFloors();
+        }
+    }
+
+    #endregion
+
+    #region PUBLIC_METHODS
+
+    public void ChangeDifficulty()
+    {
+        levelIndex++;
+
+        if (levelIndex > levels.Length - 1)
+        {
+            levelIndex = levels.Length - 1;
         }
     }
 

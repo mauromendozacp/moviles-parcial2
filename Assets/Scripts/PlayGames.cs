@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlayGames : MonoBehaviour
 {
-    public int playerScore;
-    string leaderboardID = "";
-
     public static PlayGamesPlatform platform;
 
     void Start()
@@ -21,48 +18,15 @@ public class PlayGames : MonoBehaviour
 
         Social.Active.localUser.Authenticate(success =>
         {
-            if (success)
-            {
-                Debug.Log("Logged in successfully");
-            }
-            else
-            {
-                Debug.Log("Login Failed");
-            }
+            Debug.Log(success ? "Logged in successfully" : "Login Failed");
         });
-
-        UnlockAchievement(0);
     }
 
-    public void AddScoreToLeaderboard()
+    public void UnlockNoob()
     {
-        if (Social.Active.localUser.authenticated)
+        Social.Active.localUser.Authenticate(success =>
         {
-            Social.ReportScore(playerScore, leaderboardID, success => { });
-        }
-    }
-
-    public void ShowLeaderboard()
-    {
-        if (Social.Active.localUser.authenticated)
-        {
-            platform.ShowLeaderboardUI();
-        }
-    }
-
-    public void ShowAchievements()
-    {
-        if (Social.Active.localUser.authenticated)
-        {
-            platform.ShowAchievementsUI();
-        }
-    }
-
-    public static void UnlockAchievement(int ID)
-    {
-        if (Social.Active.localUser.authenticated)
-        {
-            Social.ReportProgress(GPGSIds.achievement_jaja_noob, 100f, success => { });
-        }
+            
+        });
     }
 }

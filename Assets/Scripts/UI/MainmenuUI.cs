@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MainmenuUI : MonoBehaviour
 {
@@ -9,6 +7,16 @@ public class MainmenuUI : MonoBehaviour
     [SerializeField] private GameObject menuPanel = null;
     [SerializeField] private GameObject storePanel = null;
     [SerializeField] private GameObject creditsPanel = null;
+    [SerializeField] private GameObject logsPanel = null;
+
+    #endregion
+
+    #region UNITY_CALLS
+
+    private void Start()
+    {
+        MLogger.SendLog("Start game");
+    }
 
     #endregion
 
@@ -24,6 +32,7 @@ public class MainmenuUI : MonoBehaviour
         menuPanel.SetActive(true);
         creditsPanel.SetActive(false);
         storePanel.SetActive(false);
+        logsPanel.SetActive(false);
     }
 
     public void ShowStore()
@@ -38,8 +47,15 @@ public class MainmenuUI : MonoBehaviour
         creditsPanel.SetActive(true);
     }
 
+    public void ShowLogs()
+    {
+        menuPanel.SetActive(false);
+        logsPanel.SetActive(true);
+    }
+
     public void ExitGame()
     {
+        MLogger.SendLog("End game");
         Application.Quit();
     }
 

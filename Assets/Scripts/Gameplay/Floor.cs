@@ -1,8 +1,8 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public struct Spawn
 {
     public Transform transform;
@@ -48,7 +48,7 @@ public class Floor : MonoBehaviour
         int index = 0;
         do
         {
-            index = Random.Range(0, spawns.Length);
+            index = UnityEngine.Random.Range(0, spawns.Length);
         } while (spawns[index].inUse);
 
         spawns[index].inUse = true;

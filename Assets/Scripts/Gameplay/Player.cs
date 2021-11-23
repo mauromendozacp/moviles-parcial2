@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     #region EXPOSED_FIELDS
 
     [SerializeField] private float horSpeed = 0f;
-    [SerializeField] private float jumpTransition = 0f;
 
     [SerializeField] private LayerMask obstacleMask = default;
     [SerializeField] private LayerMask scoreMask = default;
@@ -24,12 +23,9 @@ public class Player : MonoBehaviour
 
     #region PRIVATE_METHODS
 
-    private int points = 50;
-    private float timer = 0f;
     private int score = 0;
     private bool fall = false;
     private bool dead = false;
-    private bool moveUp = false;
     private float checkFloorDistance = 8f;
     private float maxFloorDistance = 1.18f;
     private float screenHalf = 0f;
@@ -87,8 +83,8 @@ public class Player : MonoBehaviour
         }
         else if (CheckLayerInMask(scoreMask, other.gameObject.layer))
         {
-            Score += points;
             PropScore propScore = other.gameObject.GetComponent<PropScore>();
+            Score += propScore.Points;
             propScore.ReturnScore();
         }
     }
