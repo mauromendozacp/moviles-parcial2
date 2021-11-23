@@ -24,6 +24,7 @@ public class Store : MonoBehaviour
     #region PRIVATE_FIELDS
 
     private int skinIndex = 0;
+    private CareTaker careTaker = null;
     private PlayerStore playerStore;
 
     #endregion
@@ -32,6 +33,7 @@ public class Store : MonoBehaviour
 
     private void Start()
     {
+        InitSkins();
         InitPlayerStore();
         UpdatePlayerStars();
         UpdateInfo();
@@ -56,7 +58,7 @@ public class Store : MonoBehaviour
 
     public void EquipSkin()
     {
-        GameManager.Get().Skin = skins[skinIndex];
+        GameManager.Get().Skin = careTaker.GetMemento(skinIndex).Skin;
         equipButtonGO.interactable = false;
         playerStore.skinEquiped = skinIndex;
     }
@@ -65,7 +67,7 @@ public class Store : MonoBehaviour
     {
         if (CheckBuy())
         {
-            GameManager.Get().CurrentStars -= skins[skinIndex].Stars;
+            GameManager.Get().CurrentStars -= careTaker.GetMemento(skinIndex).Skin.Stars;
             playerStore.skinsBuyed[skinIndex] = true;
             equipButtonGO.gameObject.SetActive(true);
             buyButtonGO.gameObject.SetActive(false);
@@ -76,6 +78,18 @@ public class Store : MonoBehaviour
     #endregion
 
     #region PRIVATE_METHODS
+
+    private void InitSkins()
+    {
+        careTaker = new CareTaker();
+
+        for (int i = 0; i < skins.Length; i++)
+        {
+            SkinStore skinStore = new SkinStore();
+            skinStore.Skin = skins[i];
+            careTaker.Add(skinStore.SaveToMemento());
+        }
+    }
 
     private void InitPlayerStore()
     {
@@ -101,8 +115,8 @@ public class Store : MonoBehaviour
 
     private void UpdateInfo()
     {
-        skinImage.sprite = skins[skinIndex].SkinSprite;
-        costText.text = skins[skinIndex].Stars.ToString();
+        skinImage.sprite = careTaker.GetMemento(skinIndex).Skin.SkinSprite;
+        costText.text = careTaker.GetMemento(skinIndex).Skin.Stars.ToString();
         equipButtonGO.interactable = skinIndex != playerStore.skinEquiped;
         equipButtonGO.gameObject.SetActive(playerStore.skinsBuyed[skinIndex]);
         buyButtonGO.interactable = CheckBuy();
@@ -121,7 +135,7 @@ public class Store : MonoBehaviour
 
     private bool CheckBuy()
     {
-        return GameManager.Get().CurrentStars >= skins[skinIndex].Stars;
+        return GameManager.Get().CurrentStars >= careTaker.GetMemento(skinIndex).Skin.Stars;
     }
 
     #endregion
