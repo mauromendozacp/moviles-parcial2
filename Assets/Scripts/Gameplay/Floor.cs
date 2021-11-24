@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public struct Spawn
-{
-    public Transform transform;
-    public bool inUse;
-}
-
-public class Floor : MonoBehaviour
+public class Floor : MonoBehaviour, SpawnFactory
 {
     #region EXPOSED_FIELDS
 
@@ -19,8 +11,8 @@ public class Floor : MonoBehaviour
 
     #region PROPERTIES
 
-    public List<GameObject> ObstacleList = null;
-    public GameObject ScoreGO = null;
+    public List<GameObject> ObstacleList { get; set; } = null;
+    public GameObject ScoreGO { get; set; } = null;
 
     #endregion
 
