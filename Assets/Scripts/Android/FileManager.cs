@@ -11,7 +11,6 @@ public class FileManager : MonoBehaviour
     private static void Init()
     {
 #if UNITY_ANDROID && !UNITY_EDITOR
-
         FileManagerClass = new AndroidJavaClass(packName + "." + loggerClassName);
         AndroidJavaClass unityJC = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
         AndroidJavaObject activity = unityJC.GetStatic<AndroidJavaObject>("currentActivity");
