@@ -155,6 +155,7 @@ public class Player : MonoBehaviour
                 fall = true;
                 rigid.useGravity = true;
                 rigid.isKinematic = false;
+                rigid.AddForce(Vector3.down * 5f, ForceMode.Impulse);
                 Invoke(nameof(Death), 2f);
             }
         }

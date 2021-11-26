@@ -107,7 +107,6 @@ MonoBehaviour:
   - {fileID: 7785189188393140110}
   - {fileID: 2719173664523139869}
   - {fileID: 4336904624164389315}
-  ScoreGO: {fileID: 0}
 --- !u!65 &57397334545198474
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -119,8 +118,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1.060275}
-  m_Center: {x: 0, y: 0, z: -0.000000023841858}
+  m_Size: {x: 1.0394754, y: 1, z: 1.1486777}
+  m_Center: {x: 0.00085811614, y: 0, z: 0.0020091534}
 --- !u!1 &572697244373406119
 GameObject:
   m_ObjectHideFlags: 0
