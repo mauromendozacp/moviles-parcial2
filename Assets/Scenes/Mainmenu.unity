@@ -4889,6 +4889,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f208092c39f35449897f196e66e68c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  achievements:
+  - id: 0
+    description: Jaja noob
+    points: 5
+    achievementId: 
+  - id: 1
+    description: 50 estrellas
+    points: 10
+    achievementId: 
+  - id: 2
+    description: 250 estrellas
+    points: 15
+    achievementId: 
+  - id: 3
+    description: 500 estrellas
+    points: 20
+    achievementId: 
+  - id: 4
+    description: nasheeee
+    points: 25
+    achievementId: 
 --- !u!1 &1401606592
 GameObject:
   m_ObjectHideFlags: 0

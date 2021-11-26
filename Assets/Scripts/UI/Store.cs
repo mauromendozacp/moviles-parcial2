@@ -72,6 +72,11 @@ public class Store : MonoBehaviour
             equipButtonGO.gameObject.SetActive(true);
             buyButtonGO.gameObject.SetActive(false);
             UpdatePlayerStars();
+
+            if (CheckAllBuys())
+            {
+                PlayGames.Get().UnlockAchievement(4);
+            }
         }
     }
 
@@ -136,6 +141,19 @@ public class Store : MonoBehaviour
     private bool CheckBuy()
     {
         return GameManager.Get().CurrentStars >= careTaker.GetMemento(skinIndex).Skin.Stars;
+    }
+
+    private bool CheckAllBuys()
+    {
+        for (int i = 0; i < playerStore.skinsBuyed.Length; i++)
+        {
+            if (!playerStore.skinsBuyed[i])
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     #endregion

@@ -78,5 +78,21 @@ public class GameplayManager : MonoBehaviour
         GameManager.Get().FinishGame(player.Score);
     }
 
+    private void UnlockAchievements()
+    {
+        if (GameManager.Get().RecollectedStars >= 50)
+        {
+            PlayGames.Get().UnlockAchievement(1);
+        }
+        else if (GameManager.Get().RecollectedStars >= 250)
+        {
+            PlayGames.Get().UnlockAchievement(2);
+        }
+        else if (GameManager.Get().RecollectedStars >= 500)
+        {
+            PlayGames.Get().UnlockAchievement(3);
+        }
+    }
+
     #endregion
 }

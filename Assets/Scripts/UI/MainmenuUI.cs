@@ -74,7 +74,7 @@ public class MainmenuUI : MonoBehaviour
 
     void HandleLog(string logString, string stackTrace, LogType type)
     {
-        FileManager.WriteFile(logString + "\n");
+        FileManager.Get().WriteFile(logString + "\n");
     }
 
     #endregion

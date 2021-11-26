@@ -13,7 +13,7 @@ public class LogsUI : MonoBehaviour
 
     public void UpdateLogs()
     {
-        logsText.text = FileManager.ReadFile();
+        logsText.text = FileManager.Get().ReadFile();
     }
 
     #endregion

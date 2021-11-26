@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 
-public class FileManager : MonoBehaviour
+public class FileManager : MonoBehaviourSingleton<FileManager>
 {
     private const string packName = "com.example.modulo1";
     private const string loggerClassName = "FileManager";
 
-    private static AndroidJavaClass FileManagerClass = null;
-    private static AndroidJavaObject FileManagerInstance = null;
+    private AndroidJavaClass FileManagerClass = null;
+    private AndroidJavaObject FileManagerInstance = null;
 
-    private static void Init()
+    private void Init()
     {
 #if UNITY_ANDROID && !UNITY_EDITOR
         FileManagerClass = new AndroidJavaClass(packName + "." + loggerClassName);
@@ -20,7 +20,7 @@ public class FileManager : MonoBehaviour
 #endif
     }
 
-    public static string ReadFile()
+    public string ReadFile()
     {
         if (FileManagerInstance == null)
         {
@@ -29,7 +29,7 @@ public class FileManager : MonoBehaviour
         return FileManagerInstance?.Call<string>("ReadFile");
     }
 
-    public static void WriteFile(string data)
+    public void WriteFile(string data)
     {
         if (FileManagerInstance == null)
         {

@@ -24,7 +24,12 @@
 
 public static class GPGSIds
 {
+        public const string achievement_250_estrellas = "CgkI29i4reUBEAIQAw"; // <GPGSID>
+        public const string achievement_50_stars = "CgkI29i4reUBEAIQAg"; // <GPGSID>
         public const string achievement_jaja_noob = "CgkI29i4reUBEAIQAQ"; // <GPGSID>
+        public const string achievement_500_estrellas = "CgkI29i4reUBEAIQBA"; // <GPGSID>
+        public const string achievement_nasheeee = "CgkI29i4reUBEAIQBQ"; // <GPGSID>
+        public const string leaderboard_leadboard_estrellas = "CgkI29i4reUBEAIQBg"; // <GPGSID>
 
 }
 
