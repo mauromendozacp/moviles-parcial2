@@ -32,6 +32,7 @@ public class GameplayManager : MonoBehaviour
     {
         GameManager.Get().Init();
         Init();
+        Debug.Log("Start Gameplay");
     }
 
     private void Update()

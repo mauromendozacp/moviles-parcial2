@@ -15,6 +15,7 @@ public class GameoverUI : MonoBehaviour
     {
         int score = GameManager.Get().RecollectedStars;
         scoreText.text = "STARS: " + score;
+        Debug.Log("End Gameplay");
     }
 
     #endregion
