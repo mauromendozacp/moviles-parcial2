@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
     private float checkFloorDistance = 8f;
     private float maxFloorDistance = 1.18f;
     private float screenHalf = 0f;
+    private float minLimitX = -4.8f;
+    private float maxLimitX = 4.8f;
 
     private Rigidbody rigid = null;
 
@@ -152,11 +154,15 @@ public class Player : MonoBehaviour
             }
             else
             {
-                fall = true;
-                rigid.useGravity = true;
-                rigid.isKinematic = false;
-                rigid.AddForce(Vector3.down * 5f, ForceMode.Impulse);
-                Invoke(nameof(Death), 2f);
+                if (transform.position.x < minLimitX || transform.position.x > maxLimitX)
+                {
+                    fall = true;
+                    rigid.useGravity = true;
+                    rigid.isKinematic = false;
+                    rigid.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+                    Shake.Get().MakeShake();
+                    Invoke(nameof(Death), 2f);
+                }
             }
         }
     }

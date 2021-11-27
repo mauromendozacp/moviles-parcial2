@@ -45,6 +45,11 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        UnlockAchievements();
+    }
+
     #endregion
 
     #region PRIVATE_METHODS
@@ -80,6 +85,7 @@ public class GameplayManager : MonoBehaviour
 
     private void UnlockAchievements()
     {
+#if UNITY_ANDROID && !UNITY_EDITOR
         if (GameManager.Get().RecollectedStars >= 50)
         {
             PlayGames.Get().UnlockAchievement(1);
@@ -92,7 +98,8 @@ public class GameplayManager : MonoBehaviour
         {
             PlayGames.Get().UnlockAchievement(3);
         }
+#endif
     }
 
-    #endregion
+#endregion
 }

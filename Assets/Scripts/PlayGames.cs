@@ -7,7 +7,6 @@ public struct Achievement
 {
     public int id;
     public string description;
-    public float points;
     public string achievementId;
 }
 
@@ -16,6 +15,7 @@ public class PlayGames : MonoBehaviourSingleton<PlayGames>
     [SerializeField] private Achievement[] achievements = null;
 
     public static PlayGamesPlatform platform;
+    private double progress = 100f;
 
     void Start()
     {
@@ -38,7 +38,7 @@ public class PlayGames : MonoBehaviourSingleton<PlayGames>
     {
         if (Social.Active.localUser.authenticated)
         {
-            Social.ReportProgress(GetAchievement(id).achievementId, GetAchievement(id).points, success =>
+            Social.ReportProgress(GetAchievement(id).achievementId, progress, success =>
             {
                 Debug.Log("Unlock achievement: " + GetAchievement(id).description);
             });
